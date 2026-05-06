@@ -10,33 +10,53 @@ name_output = str(input("Nome do objeto observado: "))
 
 video = cv2.VideoCapture(inn_video)
 
-
-# ===== Header =====
-
 validacao = ''
 while validacao.upper() not in ['S', 'N']:
 
     validacao = str(input("tempo de no header? s/n: "))
     print(validacao, validacao.upper())
     if validacao.upper() == 'S':
+    	
+    	while True:
+    	
+            ref_time_ins = str(input("tempo de inicio (i), meio (m) ou fim (f) da exposição? "))
+        
+            exposure_time = float(input("tempo de exposição: "))
+            cycle_time = float(input("tempo de ciclo: ")) 
+        
+            hora = int(input('hora: '))
+            minu = int(input('minuto: '))
+            segu = float(input('segundo: '))
+            diaa = int(input('dia: '))
+            mess = int(input('mês: '))
+            anoo = int(input('ano: '))
+            
+            if ref_time_ins.upper() == 'I':
 
-        exposure_time = float(input("tempo de exposição: "))
-        cycle_time = float(input("tempo de ciclo: ")) 
-        
-        print('\n\nInforme o instante de início da exposição')
-        
-        hora = int(input('hora: '))
-        minu = int(input('minuto: '))
-        segu = float(input('segundo: '))
-        diaa = int(input('dia: '))
-        mess = int(input('mês: '))
-        anoo = int(input('ano: '))
+                start_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu:.3f}", format="isot", scale="utc")
+                end_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+exposure_time:.3f}", format="isot", scale="utc")
+                mid_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+(exposure_time/2):.3f}", format="isot", scale="utc")
+                
+                break
+                
+            elif ref_time_ins.upper() == 'M':
 
-        start_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu:.3f}", format="isot", scale="utc")
-        
-        end_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+exposure_time:.3f}", format="isot", scale="utc")
-        
-        mid_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+(exposure_time/2):.3f}", format="isot", scale="utc")
+                start_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu:.3f}", format="isot", scale="utc") - TimeDelta(exposure_time/2, format="sec")
+                end_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+exposure_time:.3f}", format="isot", scale="utc")  - TimeDelta(exposure_time/2, format="sec")
+                mid_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+(exposure_time/2):.3f}", format="isot", scale="utc") - TimeDelta(exposure_time/2, format="sec")
+                
+                break
+
+            elif ref_time_ins.upper() == 'F':
+
+                start_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu:.3f}", format="isot", scale="utc") - TimeDelta(exposure_time, format="sec")
+                end_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+exposure_time:.3f}", format="isot", scale="utc") - TimeDelta(exposure_time, format="sec")
+                mid_time = Time(f"{anoo}-{mess}-{diaa}T{hora}:{minu}:{segu+(exposure_time/2):.3f}", format="isot", scale="utc") - TimeDelta(exposure_time, format="sec")
+                
+                break
+            
+            else:
+                print('Informe apenas i, m ou f')
 
     elif validacao.upper() == 'N':
     
