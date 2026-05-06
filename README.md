@@ -6,8 +6,6 @@ Nome do objeto observado: Quaoar
 
 tempo de no header? s/n: s
 
-s S
-
 tempo de inicio (i), meio (m) ou fim (f) da exposição? f
 
 tempo de exposição: 0.1
