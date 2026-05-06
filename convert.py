@@ -14,7 +14,6 @@ validacao = ''
 while validacao.upper() not in ['S', 'N']:
 
     validacao = str(input("tempo de no header? s/n: "))
-    print(validacao, validacao.upper())
     if validacao.upper() == 'S':
     	
     	while True:
