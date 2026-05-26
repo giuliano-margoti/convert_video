@@ -1,27 +1,33 @@
 ~$ python3 convert.py 
 
-Nome do arquivo de vídeo: 09_46_34.avi
+Nome do arquivo de vídeo (com a extensão .avi ou .ser): 09_46_34.ser
 
-Nome do objeto observado: Quaoar
+Nome do objeto observado: teste
 
-tempo de no header? s/n: s
+Adicionar tempo no header? (s/n): s
 
-tempo de inicio (i), meio (m) ou fim (f) da exposição? f
+Tempo de inicio (i), meio (m) ou fim (f) da exposição? i
 
-tempo de exposição: 0.1
+Tempo de exposição (s): 0.1
 
-tempo de ciclo: 0.11
+Tempo de ciclo (s): 0.1
 
-hora: 01
+Hora: 01
 
-minuto: 01
+Minuto: 01
 
-segundo: 01.001
+Segundo: 01.001
 
-dia: 01
+Dia: 01
 
-mês: 01
+Mês: 01
 
-ano: 2001
+Ano: 2001
 
-Tempos definido
+Configurações de tempo definidas.
+
+Iniciando conversão de 156 frames do arquivo SER...
+
+Salvando FITS: 100%|██████████████████████| 156/156 [00:00<00:00, 210.29frame/s]
+
+Processamento concluído com sucesso!
