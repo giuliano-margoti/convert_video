@@ -59,6 +59,7 @@ class SERReader(object):
 
 def salvar_fits(data, n, name_output, validacao, output_dir, start_time=None, end_time=None, mid_time=None, cycle_time=None, exposure_time=None, ser_header=None):
     hdu = fits.PrimaryHDU(data)
+    hdu.header["Bayer"]  = ("GR", "")
     
     if validacao.upper() == 'S':
         obs_time_start = start_time + TimeDelta(n * cycle_time, format="sec")
@@ -72,7 +73,7 @@ def salvar_fits(data, n, name_output, validacao, output_dir, start_time=None, en
         
         hdu.header["EXPTIME"] = (exposure_time, "Tempo de exposicao [s]")    
         hdu.header["CYCLE"]   = (cycle_time, "Tempo entre frames [s]")
-        hdu.header["OBJECT"]  = (name_output, "")    
+        hdu.header["OBJECT"]  = (name_output, "") 
 
         nome_tempo = obs_time_start.isot.replace(":", "-")
         file_name = f"{name_output}_{nome_tempo}_{n:06d}.fits"
